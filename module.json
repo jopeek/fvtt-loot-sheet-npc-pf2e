@@ -1,0 +1,16 @@
+{
+	"name": "lootsheetnpcpf2e",
+	"title": "Loot Sheet NPC PF2e",
+	"description": "This module adds an additional NPC sheet which can be used for loot containers such as chests or shopkeepers.",
+	"version": "0.0.1",
+	"minimumCoreVersion": "0.5.7",
+	"compatibleCoreVersion": "0.6.0",
+	"author": "Jan Ole Peek (ChalkOne), Charles Miller (Kage)",
+	"systems": ["pf2e"],
+    "esmodules": ["/lootsheetnpcpf2e.js"],
+	"styles": ["/css/lootsheetnpcpf2e.css"],
+	"socket": true,
+	"url": "https://github.com/jopeek/fvtt-loot-sheet-npc-pf2e",
+	"manifest": "https://raw.githubusercontent.com/jopeek/fvtt-loot-sheet-npc-pf2e/master/module.json",
+	"download": "https://github.com/jopeek/fvtt-loot-sheet-npc-pf2e/archive/master.zip"
+}
