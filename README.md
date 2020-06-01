@@ -13,11 +13,8 @@ Can be used to create an inventory of a shopkeeper to allow players to peruse th
 ##### Price Modifier
 Prices can be adjusted by percentage for all owned items.
 
-
 ##### Create Spell Scrolls
 Dragging of spells into the sheet will automatically turn them into scrolls.
-
-![demo_scrolls](https://thumbs.gfycat.com/LividAccurateFluke-size_restricted.gif)
 
 ### Compatibility:
 - Tested with FVTT v0.6.0.

@@ -60,9 +60,12 @@ class LootSheetNPC extends ActorSheetPF2e {
         });
 
         Handlebars.registerHelper('lootsheetprice', function (basePrice, modifier) {
-            basePrice = basePrice.toString().substring(0, basePrice.length - 3).replace(",", "");
+            if (basePrice) {
+                basePrice = basePrice.toString().substring(0, basePrice.length - 3).replace(",", "");
            //console.log(modifier);
             return Math.round(basePrice * modifier * 100) / 100;
+            }
+            return 0;
         });
 
         const path = "systems/pf2e/templates/actors/";
@@ -226,7 +229,9 @@ class LootSheetNPC extends ActorSheetPF2e {
             //console.log(newItem);
             if (!newItem || newItem === null) {
                 //Item doesn't exist in game, let's see if we can import it from the compendium
-                const compendiumitems = game.packs.get("pf2e.items");
+                const compendiumitems = game.packs.get("pf2e.equipment-srd");
+                console.log(game.packs);
+                console.log(compendiumitems);
                 //compendiumitems.getIndex().then(index => console.log(index));
                 //let newItem = compendiumitems.index.find(e => e.id === rollResult.results[0].resultId);
                 compendiumitems.getEntity(rollResult.results[0].resultId).then(i => console.log(i));
@@ -240,7 +245,7 @@ class LootSheetNPC extends ActorSheetPF2e {
             let itemQtyRoll = new Roll(itemQtyFormula);
             itemQtyRoll.roll();
             console.log(`Loot Sheet | Adding ${itemQtyRoll.result} x ${newItem.name}`)
-            newItem.data.data.quantity = itemQtyRoll.result;
+            newItem.data.data.quantity.value = itemQtyRoll.result;
 
             await this.actor.createEmbeddedEntity("OwnedItem", newItem);
         }
@@ -652,10 +657,10 @@ class LootSheetNPC extends ActorSheetPF2e {
 
         //console.log("Loot Sheet | Prepare Items");
         // Iterate through items, allocating to containers
-        console.log(actorData);
+        //console.log(actorData);
         for (let i of actorData.items) {
             i.img = i.img || DEFAULT_TOKEN;
-			console.log("Loot Sheet | item", i.type);
+			//console.log("Loot Sheet | item", i.type);
 			
             // Features
             if (i.type === "weapon") features.weapons.items.push(i);
@@ -819,9 +824,9 @@ Hooks.on('preCreateOwnedItem', (actor, item, data) => {
         if (item.type === "spell") {
             //console.log("Loot Sheet | dragged spell item", item);
 
-            let changeScrollIcon = game.settings.get("lootsheetnpcpf2e", "changeScrollIcon");
+            // let changeScrollIcon = game.settings.get("lootsheetnpcpf2e", "changeScrollIcon");
 
-            if (changeScrollIcon) item.img = "modules/lootsheetnpcpf2e/icons/Scroll" + item.data.level + ".png";
+            // if (changeScrollIcon) item.img = "modules/lootsheetnpcpf2e/icons/Scroll" + item.data.level + ".png";
 
             //console.log("Loot Sheet | check changeScrollIcon", changeScrollIcon);
 
@@ -862,14 +867,14 @@ Hooks.once("init", () => {
         return options.inverse(this);
     });
 
-	game.settings.register("lootsheetnpcpf2e", "changeScrollIcon", {
-		name: "Change icon for Spell Scrolls?",
-		hint: "Changes the icon for spell scrolls to a scroll icon. If left unchecked, retains the spell's icon.",
-		scope: "world",
-		config: true,
-		default: true,
-		type: Boolean
-    });
+	// game.settings.register("lootsheetnpcpf2e", "changeScrollIcon", {
+	// 	name: "Change icon for Spell Scrolls?",
+	// 	hint: "Changes the icon for spell scrolls to a scroll icon. If left unchecked, retains the spell's icon.",
+	// 	scope: "world",
+	// 	config: true,
+	// 	default: true,
+	// 	type: Boolean
+    // });
     
     game.settings.register("lootsheetnpcpf2e", "buyChat", {
             name: "Display chat message for purchases?",
