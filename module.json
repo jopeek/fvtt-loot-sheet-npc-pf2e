@@ -10,7 +10,8 @@
     "esmodules": ["/lootsheetnpcpf2e.js"],
 	"styles": ["/css/lootsheetnpcpf2e.css"],
 	"socket": true,
-	"url": "https://github.com/jopeek/fvtt-loot-sheet-npc-pf2e",
-	"manifest": "https://raw.githubusercontent.com/jopeek/fvtt-loot-sheet-npc-pf2e/master/module.json",
-	"download": "https://github.com/jopeek/fvtt-loot-sheet-npc-pf2e/archive/master.zip"
+	"url": "https://gitlab.com/bipedalshark/loot-sheet-npc-pf2e",
+	"manifest": "https://gitlab.com/bipedalshark/loot-sheet-npc-pf2e/-/raw/master/module.json",
+	"download": "https://gitlab.com/bipedalshark/loot-sheet-npc-pf2e/-/archive/master/loot-sheet-npc-pf2e-master.zip"
+
 }
